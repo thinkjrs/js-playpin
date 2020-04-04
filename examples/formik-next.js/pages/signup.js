@@ -31,46 +31,26 @@ const SignupForm = () => {
   });
   return (
     <form onSubmit={formik.handleSubmit}>
-      <label htmlFor="firstName">First name</label>
-      <input
-        id="firstName"
-        name="firstName"
-        type="text"
-        placeholder="Enter your first name"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.firstName}
-      />
-      {formik.touched.firstName && formik.errors.firstName ? (
-        <div>{formik.errors.firstName}</div>
-       ) : null}
-      <label htmlFor="lastName">Last name</label>
-      <input
-        id="lastName"
-        name="lastName"
-        type="text"
-        placeholder="Enter your last name"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.lastName}
-      />
-      {formik.touched.lastName && formik.errors.lastName ? (
-        <div>{formik.errors.lastName}</div>
-       ) : null}
-      <label htmlFor="email">Email address</label>
-      <input
-        id="email"
-        name="email"
-        type="email"
-        placeholder="Enter your email"
-        onChange={formik.handleChange}
-        onBlur={formik.handleBlur}
-        value={formik.values.email}
-      />
-      {formik.touched.email && formik.errors.email ? (
-        <div>{formik.errors.email}</div>
-       ) : null}
-      <button type="submit">Submit</button>
+      <div>
+        <label htmlFor="firstName">First name</label>
+        <input name="firstName" type="text" {...formik.getFieldProps('firstName')} />
+        {formik.touched.firstName && formik.errors.firstName ? (
+          <div>{formik.errors.firstName}</div>
+         ) : null}
+        <label htmlFor="lastName">Last name</label>
+        <input name="lastName" type="text" {...formik.getFieldProps('lastName')} />
+        {formik.touched.lastName && formik.errors.lastName ? (
+          <div>{formik.errors.lastName}</div>
+         ) : null}
+        <label htmlFor="email">Email address</label>
+        <input name="email" type="email" {...formik.getFieldProps('email')} />
+        {formik.touched.email && formik.errors.email ? (
+          <div>{formik.errors.email}</div>
+         ) : null}
+      </div>
+      <div>
+        <button type="submit">Submit</button>
+      </div>
     </form>
   );
 };

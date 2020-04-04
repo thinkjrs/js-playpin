@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import SignupForm from './signup';
 
 
 function Index() {
@@ -10,6 +11,7 @@ function Index() {
       </Head>
       <h1>A <code>Formik</code> & <code>Next.js</code> exemplar</h1>
       <p>Hello, world!</p>
+      <SignupForm />
     </div>
   );
 };

@@ -54,7 +54,7 @@ are immutable--read the above closely!
 
 Various links, sources, and reference materials for the tutorial above.
 
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let 
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var 
 -https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const 
-- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone
+- https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone 

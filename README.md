@@ -1,5 +1,9 @@
 # js-playpin
+<<<<<<< HEAD
 _My place to learn, explore, and practice JavaScript-related items._
+=======
+_My place to learn, explore, and practice Javascript-related items._
+>>>>>>> 14f3bfc6c67ee00fa02a07de7a9b461f3d4e15d9
 
 ![Plastic balls in playpin](https://storage.googleapis.com/github.thinkjrs.dev/greyson-joralemon-9IBqihqhuHc-unsplash.jpg)
 

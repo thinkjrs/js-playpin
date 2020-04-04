@@ -15,14 +15,22 @@ two and mostly use those authors' pre-built instructional code.
 1. create a `package.json`:
 ```json
 {
+  "name": "formik-next.js",
+  "version": "0.0.1",
+  "description": "My form project description",
   "scripts": {
     "dev": "next",
     "build": "next build",
     "start": "next start",
     "export": "next export"
-  }
+  },
+  "author": "Your Name Here",
+  "license": "(Be cool choose MIT)"
 }
 ```
+> _Those of you paying attention might think the `dependencies` key is
+> missing; alas, it is not and we'll add to them in the next step._
+
 2. Install your dependencies:
 ```bash
 npm install react react-dom next formik -S # save them to package.json

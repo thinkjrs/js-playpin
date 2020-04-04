@@ -3,6 +3,74 @@ _My place to learn, explore, and practice JavaScript-related items._
 
 ![Plastic balls in playpin](https://storage.googleapis.com/github.thinkjrs.dev/greyson-joralemon-9IBqihqhuHc-unsplash.jpg)
 
+## `/examples`
+
+### `/examples/formik-next.js`: A tutorial
+
+Referencing the Formik and Next.js documentation, we'll combine the
+two and mostly use those authors' pre-built instructional code.
+
+#### Setup -> "initial commit"
+
+1. create a `package.json`:
+```json
+{
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start",
+    "export": "next export"
+  }
+}
+```
+2. Install your dependencies:
+```bash
+npm install react react-dom next formik -S # save them to package.json
+```
+3. Create a pages directory and `index.js` contained within:
+```bash
+mkdir pages
+touch pages/index.js
+```
+
+Then throw the following in your newly minted `index.js` file:
+```javascript
+import Head from 'next/head';
+
+
+function Index() {
+  return (
+    <div>
+      <Head>
+        <title>Formik-Next.js Tutorial</title>
+        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+      </Head>
+      <h1>A <code>Formik</code> & <code>Next.js</code> exemplar</h1>
+      <p>Hello, world!</p>
+    </div>
+  );
+};
+
+export default Index;
+```
+
+4. Run your development server on port 3000:
+```bash
+npm run dev
+```
+
+Pending everything works you should see a `compiled successfully - 
+ready on http://localhost:3000` message in your terminal, to which
+you should surely navigate.
+
+##### What you should see
+
+![Screen grab of expected results](https://storage.googleapis.com/github.thinkjrs.dev/formik-nextjs01.JPG)
+
+#### Diving in
+
+
+
 ## JavaScript tutorial
 
 A quick tour of the language via my personal learning journal.

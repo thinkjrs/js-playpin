@@ -1,6 +1,6 @@
 {
   "name": "formik-next.js",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A living practice form exemplar using Next.js and Formik",
   "scripts": {
     "dev": "next",

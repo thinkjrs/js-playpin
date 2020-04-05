@@ -1,6 +1,6 @@
 {
   "name": "formik-next.js",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A living practice form exemplar using Next.js and Formik",
   "scripts": {
     "dev": "next",
@@ -12,9 +12,12 @@
   "license": "MIT",
   "dependencies": {
     "formik": "^2.1.4",
+    "formik-wizard": "^3.1.2",
     "next": "^9.3.4",
     "react": "^16.13.1",
+    "react-albus": "^2.0.0",
     "react-dom": "^16.13.1",
+    "setimmediate": "^1.0.5",
     "yup": "^0.28.3"
   }
 }

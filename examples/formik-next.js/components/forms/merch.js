@@ -3,13 +3,14 @@ import { Field, ErrorMessage } from 'formik';
 
 
 // A boilerplate, custom signup with Formik
-const MerchForm = () => {
+function MerchInfo() {
   return (
     <div>
-      <Field name="merchDollars" placeholder="" type="text" />
+      <label htmlFor="merchDollars" />
+      <Field name="merchDollars" placeholder="Merch sales per show" type="text" />
       <ErrorMessage name="merchDollars" />
     </div>
   );
 };
 
-export default MerchForm;
+export default MerchInfo;

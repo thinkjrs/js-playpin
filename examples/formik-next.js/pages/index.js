@@ -57,7 +57,15 @@ function App() {
           &nbsp;are awesome!
         </em>
       </blockquote>
-      <FormikWizard steps={steps} onSubmit={handleSubmit} render={FormWrapper} />
+      <FormikWizard steps={steps} onSubmit={(values) => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(
+              alert(JSON.stringify(values, null, 2))
+            )
+          }, 400);
+        })
+      }} render={FormWrapper} />
     </div>
   );
 };

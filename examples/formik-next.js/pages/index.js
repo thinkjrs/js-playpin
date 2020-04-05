@@ -3,12 +3,7 @@ import {FormikWizard} from 'formik-wizard';
 import steps from '../components/steps';
 import { useCallback } from 'react';
 import setImmediate from 'setimmediate';
-//import YouForm from '../components/forms/you';
-//import ShowsForm from '../components/forms/shows';
-//import MerchForm from '../components/forms/merch';
-//import DigitalForm from '../components/forms/digital';
-//import SignupForm from '../components/forms/signup';
-//import SignupForm from './signup';
+
 
 function FormWrapper({
   children,
@@ -23,9 +18,9 @@ function FormWrapper({
       {status && (
         <div>
           {status.message}
-          <hr />
         </div>
       )}
+     {children}
       <div>
         <button type="button" onClick={goToPreviousStep} disabled={!canGoBack}>
           Previous
@@ -34,8 +29,6 @@ function FormWrapper({
           {actionLabel || (isLastStep ? 'Submit' : 'Next step')}
         </button>
       </div>
-      <hr />
-      {children}
     </div>
   )
 }

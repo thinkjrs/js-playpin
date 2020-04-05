@@ -1,6 +1,12 @@
 import Head from 'next/head';
+import {Formik, Form } from 'formik';
+import * as Yup from 'yup';
+//import YouForm from '../components/forms/you';
+//import ShowsForm from '../components/forms/shows';
+//import MerchForm from '../components/forms/merch';
+//import DigitalForm from '../components/forms/digital';
+//import SignupForm from '../components/forms/signup';
 import SignupForm from './signup';
-
 
 function Index() {
   return (
@@ -16,7 +22,7 @@ function Index() {
           &nbsp;are awesome!
         </em>
       </blockquote>
-      <SignupForm />
+      <SignupForm/>
     </div>
   );
 };

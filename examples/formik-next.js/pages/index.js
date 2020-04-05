@@ -32,7 +32,7 @@ function FormWrapper({
     </div>
   )
 }
-function App() {
+function OnboardingApp() {
   var _setImmediate = setImmediate;
   process.once('loaded', function() {
     global.setImmediate = _setImmediate;
@@ -70,4 +70,4 @@ function App() {
   );
 };
 
-export default App;
+export default OnboardingApp;

@@ -1,6 +1,5 @@
 import React from 'react';
-import { Field, ErrorMessage } from 'formik';
-
+import { Input } from '../fidelity/styles';
 
 // A boilerplate, custom signup with Formik
 function StartInfo() {
@@ -9,10 +8,7 @@ function StartInfo() {
 
   return (
     <div className="flex flex-col mb-4">
-      <div className="col-span-3 py-2">
-        <Field name="email" className="border py-1 px-3 text-grey-darkest bg-gray-200"  placeholder="Your email" type="text" />
-        <ErrorMessage name="email" />
-      </div>
+      <Input name="email" type="text" placeholder="Your email"/>
     </div>
   );
 };

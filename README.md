@@ -126,6 +126,38 @@ statically declared via `let` statements.
 As an important consequence to the definition above, the `const` declaration does **not** mean the contents of its assigned object
 are immutable--read the above closely!
 
+### A Q&A `export` lists in `JavaScript`
+
+Whoa, wait a second...what's an `export` list? You already know, trust me, just maybe not the technical name. 
+#### What is an export list?
+As a feature of named exports, an `export list` is JavaScript's way of allowing us to list multiple items for export in a single go. Sorta like _hallux_, i.e. "big toe"; bet that surprised you (MD's stop snickering). Besides, what's life without a little :laughing:?
+
+Check it:
+```js
+export { name1, name2, ..., nameN };
+```
+
+You can even rename those exports:
+```js
+export { name1 as n1, name2 as n2, ..., nameN as nN };
+```
+#### How to `import` named `export`s?
+It's easy and hardly any different, maybe cleaner, safer, and simpler (so better):
+```js
+import { n1, n2, nN } from 'myfileLocation';
+```
+
+#### Where should I put this "list"?
+
+At the :arrow_down: bottom, bottom, bottom :arrow_down: of your file!
+
+Got that?
+
+###### References
+
+- [https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export)
+
+
 ### Sources
 
 Various links, sources, and reference materials for the tutorial above.
@@ -134,3 +166,5 @@ Various links, sources, and reference materials for the tutorial above.
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/var 
 -https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/const 
 - https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/let#Temporal_dead_zone 
+- [https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export](https://developer.mozilla.org/en-US/docs/web/javascript/reference/statements/export)
+

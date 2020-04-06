@@ -3,7 +3,7 @@ import YouInfo from './forms/you';
 import ShowsInfo from './forms/shows';
 import MerchInfo from './forms/merch';
 import DigitalInfo from './forms/digital';
-import SignupInfo from './forms/signup';
+//import SignupInfo from './forms/signup';
 import StartInfo from './forms/start';
 
 export default [
@@ -80,7 +80,7 @@ export default [
         youtubeUrl: Yup.string()
           .required(' Required')
       })
-    },
+    }/*,
     {
       component: SignupInfo,
       id: 'SignupInfo',
@@ -92,5 +92,5 @@ export default [
           .required(' Required')
           .matches(/^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/, " Password must contain 1 letter, 1 number, 1 special character and be at least 8 characters long.")
       }),
-    }
+    }*/
 ]

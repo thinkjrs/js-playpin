@@ -8,10 +8,11 @@ function StartInfo() {
   // be called when the form is submitted
 
   return (
-    <div>
-      <label htmlFor="email" />
-      <Field name="email" placeholder="Your email" type="text" />
-      <ErrorMessage name="email" />
+    <div className="flex flex-col mb-4">
+      <div className="col-span-3 py-2">
+        <Field name="email" className="border py-1 px-3 text-grey-darkest bg-gray-200"  placeholder="Your email" type="text" />
+        <ErrorMessage name="email" />
+      </div>
     </div>
   );
 };

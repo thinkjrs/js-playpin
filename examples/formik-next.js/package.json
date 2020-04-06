@@ -18,6 +18,7 @@
     "react-albus": "^2.0.0",
     "react-dom": "^16.13.1",
     "setimmediate": "^1.0.5",
+    "theme-ui": "^0.3.1",
     "yup": "^0.28.3"
   }
 }

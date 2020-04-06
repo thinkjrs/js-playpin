@@ -13,8 +13,10 @@ function FormWrapper({
   canGoBack,
   actionLabel,
 }) {
+  let disabled = !canGoBack ? "cursor-not-allowed bg-gray-200" : "font-bold bg-gray-300 hover:bg-gray-400"
+  let btnClassName = disabled + " text-gray-800 py-2 px-4 rounded-l"
   return (
-    <div>
+    <div className="container mx-auto">
       {status && (
         <div>
           {status.message}
@@ -22,17 +24,17 @@ function FormWrapper({
       )}
      {children}
       <div>
-        <button type="button" onClick={goToPreviousStep} disabled={!canGoBack}>
+        <button className={btnClassName}  type="button" onClick={goToPreviousStep} disabled={!canGoBack}>
           Previous
         </button>
-        <button type="submit">
+        <button className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r" type="submit">
           {actionLabel || (isLastStep ? 'Submit' : 'Next step')}
         </button>
       </div>
     </div>
   )
 }
-function App() {
+function OnboardingApp() {
   var _setImmediate = setImmediate;
   process.once('loaded', function() {
     global.setImmediate = _setImmediate;
@@ -45,18 +47,20 @@ function App() {
     }
   }, [])
   return (
-    <div>
+    <div className="container mx-auto px-4">
       <Head>
         <title>Formik-Next.js Tutorial</title>
         <meta name="viewport" content="initial-scale=1.0, width=device-width" />
       </Head>
-      <h3>A <code>Formik</code> <code>Next.js</code> exemplar</h3>
-      <blockquote>
-        <em>Forms with 
-          &nbsp;<code>Formik</code> and <code>Next.js</code> 
-          &nbsp;are awesome!
-        </em>
-      </blockquote>
+      <>
+        <h3>A <code>Formik</code> <code>Next.js</code> exemplar</h3>
+        <blockquote>
+          <em>Forms with 
+            &nbsp;<code>Formik</code> and <code>Next.js</code> 
+            &nbsp;are awesome!
+          </em>
+        </blockquote>
+      </>
       <FormikWizard steps={steps} onSubmit={(values) => {
         return new Promise((resolve) => {
           setTimeout(() => {
@@ -70,4 +74,4 @@ function App() {
   );
 };
 
-export default App;
+export default OnboardingApp;

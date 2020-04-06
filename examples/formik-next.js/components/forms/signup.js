@@ -1,6 +1,5 @@
 import React from 'react';
 import { Field, ErrorMessage } from 'formik';
-import setImmediate from 'setimmediate';
 
 
 // A boilerplate, custom signup with Formik

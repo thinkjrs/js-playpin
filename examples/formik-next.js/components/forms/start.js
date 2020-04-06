@@ -1,22 +1,18 @@
 import React from 'react';
-import Link from 'next/link';
 import { Field, ErrorMessage } from 'formik';
-import setImmediate from 'setimmediate';
 
 
 // A boilerplate, custom signup with Formik
 function StartInfo() {
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
-  var _setImmediate = setImmediate;
-  process.once('loaded', function() {
-    global.setImmediate = _setImmediate;
-  });
+
   return (
-    <div>
-      <label htmlFor="email" />
-      <Field name="email" placeholder="Your email" type="text" />
-      <ErrorMessage name="email" />
+    <div className="flex flex-col mb-4">
+      <div className="col-span-3 py-2">
+        <Field name="email" className="border py-1 px-3 text-grey-darkest bg-gray-200"  placeholder="Your email" type="text" />
+        <ErrorMessage name="email" />
+      </div>
     </div>
   );
 };

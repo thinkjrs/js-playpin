@@ -3,7 +3,7 @@ import YouInfo from './forms/you';
 import ShowsInfo from './forms/shows';
 import MerchInfo from './forms/merch';
 import DigitalInfo from './forms/digital';
-import SignupInfo from './forms/signup';
+//import SignupInfo from './forms/signup';
 import StartInfo from './forms/start';
 
 export default [
@@ -15,9 +15,9 @@ export default [
       },
       validationSchema: Yup.object({
         email: Yup.string()
-          .max(80, 'Must be 80 characters or less')
-          .email('Invalid email address')
-          .required('Required')
+          .max(80, ' Must be 80 characters or less')
+          .email(' Invalid email address')
+          .required(' Required')
       })
     },
     {
@@ -30,14 +30,14 @@ export default [
       },
       validationSchema: Yup.object({
         firstName: Yup.string()
-          .max(25, 'Must be 25 characters or less')
-          .required('Required'),
+          .max(25, ' Must be 25 characters or less')
+          .required(' Required'),
         lastName: Yup.string()
-          .max(25, 'Must be 25 characters or less')
-          .required('Required'),
+          .max(25, ' Must be 25 characters or less')
+          .required(' Required'),
         artistName: Yup.string()
-          .max(80, 'Must be 80 characters or less')
-          .required('Required'), 
+          .max(80, ' Must be 80 characters or less')
+          .required(' Required'), 
       })
     },
     {
@@ -50,11 +50,11 @@ export default [
       },
       validationSchema: Yup.object({
         liveShowAttendance: Yup.string()
-          .required('Required'),
+          .required(' Required'),
         liveShowFrequency: Yup.string() 
-          .required('Required'),
+          .required(' Required'),
         liveShowTixPrice: Yup.string()
-          .required('Required'),
+          .required(' Required'),
       })
     },
     {
@@ -65,7 +65,7 @@ export default [
       },
       validationSchema: Yup.object({
         merchDollars: Yup.string()
-          .required('Required'),
+          .required(' Required'),
       })
     },
     {
@@ -76,11 +76,11 @@ export default [
       },
       validationSchema: Yup.object({
         monthlyListenersSpotify: Yup.string()
-          .required('Required'),
+          .required(' Required'),
         youtubeUrl: Yup.string()
-          .required('Required')
+          .required(' Required')
       })
-    },
+    }/*,
     {
       component: SignupInfo,
       id: 'SignupInfo',
@@ -89,7 +89,8 @@ export default [
       },
       validationSchema: Yup.object({
         password: Yup.string()
-          .required('Required')
+          .required(' Required')
+          .matches(/^.*(?=.{8,})(?=.*[a-zA-Z])(?=.*\d)(?=.*[!#$%&? "]).*$/, " Password must contain 1 letter, 1 number, 1 special character and be at least 8 characters long.")
       }),
-    }
+    }*/
 ]

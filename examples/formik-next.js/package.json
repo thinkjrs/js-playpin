@@ -11,6 +11,7 @@
   "author": "Jason R. Stevens, CFA",
   "license": "MIT",
   "dependencies": {
+    "@theme-ui/presets": "^0.3.0",
     "formik": "^2.1.4",
     "formik-wizard": "^3.1.2",
     "next": "^9.3.4",

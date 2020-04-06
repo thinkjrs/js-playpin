@@ -11,7 +11,8 @@
   "author": "Jason R. Stevens, CFA",
   "license": "MIT",
   "dependencies": {
-    "@theme-ui/presets": "^0.3.0",
+    "@fullhuman/postcss-purgecss": "^2.1.0",
+    "autoprefixer": "^9.7.5",
     "formik": "^2.1.4",
     "formik-wizard": "^3.1.2",
     "next": "^9.3.4",
@@ -19,7 +20,7 @@
     "react-albus": "^2.0.0",
     "react-dom": "^16.13.1",
     "setimmediate": "^1.0.5",
-    "theme-ui": "^0.3.1",
+    "tailwindcss": "^1.2.0",
     "yup": "^0.28.3"
   }
 }

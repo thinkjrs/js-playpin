@@ -1,5 +1,5 @@
 export const EXAMPLE_PATH = 'fan-booster'
-export const PROD_NAME = 'fan-booster'
+export const PROD_NAME = 'FanBooster'
 export const CMS_NAME = 'Musicfox'
 export const BIZ_NAME = 'Musicfox'
 export const BIZ_URL = 'https://musicfox.io/'

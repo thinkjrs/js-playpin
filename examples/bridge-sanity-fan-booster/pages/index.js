@@ -1,15 +1,11 @@
 import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
 import Intro from '../components/intro'
 import Layout from '../components/layout'
-import { getAllPostsForHome, getFanBoosterThoughts } from '../lib/api'
+import { getFanBoosterThoughts } from '../lib/api'
 import Head from 'next/head'
 import { CMS_NAME } from '../lib/constants'
 
-export default function Index({ thoughts, allPosts, preview }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+export default function Index({ thoughts, preview }) {
   return (
     <>
       <Layout preview={preview}>
@@ -18,19 +14,6 @@ export default function Index({ thoughts, allPosts, preview }) {
         </Head>
         <Container>
           <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-          <h3>{thoughts[0].section_title}</h3>
-          <p>{thoughts[0].section_content}</p>
         </Container>
       </Layout>
     </>
@@ -38,9 +21,8 @@ export default function Index({ thoughts, allPosts, preview }) {
 }
 
 export async function getStaticProps({ preview = false }) {
-  const allPosts = await getAllPostsForHome(preview)
   const thoughts = await getFanBoosterThoughts()
   return {
-    props: { thoughts, allPosts, preview },
+    props: { thoughts, preview },
   }
 }

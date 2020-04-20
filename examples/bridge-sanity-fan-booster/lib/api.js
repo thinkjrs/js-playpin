@@ -18,6 +18,8 @@ const postFields = `
   title,
   date,
   excerpt,
+  artist_name,
+  account_name,
   'slug': slug.current,
   'coverImage': coverImage.asset->url,
   'author': author->{name, 'picture': picture.asset->url},
@@ -40,6 +42,16 @@ export async function getPreviewPostBySlug(slug) {
 
 export async function getAllPostsWithSlug() {
   const data = await client.fetch(`*[_type == "post"]{ 'slug': slug.current }`)
+  return data
+}
+
+export async function getArtistPage() {
+  const data = await client.fetch(`*[_type == "post"]{ 'artist_name': artist_name }`)
+  return data
+}
+
+export async function getAccountName() {
+  const data = await client.fetch(`*[_type == "post"]{ 'account_name': account_name}`)
   return data
 }
 

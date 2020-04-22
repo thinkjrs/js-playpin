@@ -64,13 +64,13 @@ export async function getAllPostsWithSlug() {
 }
 
 export async function getArtistPage() {
-  const data = await client.fetch(`*[_type == "account"]{ 'artist_name': artist_name }`)
-  return data
+  const data = await client.fetch(`*[_type == "account"]{ 'slug': slug}`)
+  return data[0].slug.current
 }
 
 export async function getAccountName() {
-  const data = await client.fetch(`*[_type == "account"]{ 'account_name': account_name}`)
-  return data
+  const data = await client.fetch(`*[_type == "account"]{ 'account_slug': account_slug }`)
+  return data[0].account_slug
 }
 
 export async function getAllPostsForHome(preview) {
@@ -120,16 +120,16 @@ export async function getAccountAndMoreAccounts(account_name, preview) {
   return { account }// moreAccounts: getUniqueAccounts(moreAccounts) }
 }
 
-export async function getAccount(account_name, artist_name, preview) {
+export async function getAccount(account_slug, slug, preview) {
   const curClient = getClient(preview)
   const [account,] = await Promise.all([
     curClient
       .fetch(
-        `*[_type == "account" && account_name == $account_name && artist_name == $artist_name] | order(_updatedAt desc) {
+        `*[_type == "account" && account_slug == $account_slug && slug.current == $slug] | order(_updatedAt desc) {
         ${accountFields}
         content,
       }`, 
-        { account_name, artist_name }
+        { account_slug, slug}
       )
       .then(res => res?.[0])
   ])

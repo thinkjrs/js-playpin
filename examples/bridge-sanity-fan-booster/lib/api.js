@@ -57,15 +57,18 @@ export async function getPreviewPostBySlug(slug) {
   )
   return data[0]
 }
-
+export async function getAllAccountsWithSlugs() {
+  const data = await client.fetch(`*[_type == "account"]{ 'slug': slug.current , 'account_slug': account_slug}`)
+  return data
+}
 export async function getAllPostsWithSlug() {
   const data = await client.fetch(`*[_type == "post"]{ 'slug': slug.current }`)
   return data
 }
 
 export async function getArtistPage() {
-  const data = await client.fetch(`*[_type == "account"]{ 'slug': slug}`)
-  return data[0].slug.current
+  const data = await client.fetch(`*[_type == "account"]{ 'slug': slug.current}`)
+  return data[0].slug
 }
 
 export async function getAccountName() {

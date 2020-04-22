@@ -19,7 +19,7 @@ export default function ArtistCampaign({ params, preview, data }) {
   //if (!router.isFallback) {
   //  return <ErrorPage statusCode={404} />
   //}
-  const account = data.account || {}
+  const account = data?.account || {}
  
   return (
     <Layout preview={preview}>
@@ -45,29 +45,25 @@ export default function ArtistCampaign({ params, preview, data }) {
 
 export async function getStaticProps({ params, preview = false }) {
   const data = await getAccount(
-    params.account_name, params.artist_name, preview
+    params.account_slug, params.slug, preview
   )
-  console.log(data)
   return {
     props: {
       preview,
       params,
       data 
-  //    account: data|| null,
     },
   }
 }
 
 export async function getStaticPaths() {
-  const allPosts = await getArtistPage()
-  const account = await getAccountName()
-  //console.log(allPosts[0])
-  //console.log(account[0])
+  const slug = await getArtistPage()
+  const actslug = await getAccountName()
   return {
     paths: [
       { params: {
-        artist_name: allPosts[0].artist_name || null,//allPosts[0].artist_name,
-        account_name: account[0].account_name || null //'test'//account[0].account_name
+        slug: slug || null,
+        account_slug: actslug || null 
       }}, 
     ] || [],
     fallback: false

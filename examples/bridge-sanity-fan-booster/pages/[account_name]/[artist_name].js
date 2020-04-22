@@ -7,57 +7,53 @@ import Header from '../../components/header'
 import PostHeader from '../../components/post-header'
 import SectionSeparator from '../../components/section-separator'
 import Layout from '../../components/layout'
-import { getArtistPage, getAccountName, getPostAndMorePosts } from '../../lib/api'
+import { getArtistPage, getAccountName, getAccount } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import { PROD_NAME, BIZ_NAME } from '../../lib/constants'
 
-export default function ArtistCampaign({ account, artist, post, morePosts, preview }) {
+export default function ArtistCampaign({ params, preview, data }) {
+
   const router = useRouter()
-  if (!router.isFallback && `${account}/${artist}`) {
-    return <ErrorPage statusCode={404} />
-  }
+  //console.log(params)
+  //if (!router.isFallback) {
+  //  return <ErrorPage statusCode={404} />
+  //}
+  const account = data.account || {}
+ 
   return (
     <Layout preview={preview}>
       <Container>
         <Header />
-        {router.isFallback ? (
-          <PostTitle>Loading…</PostTitle>
-        ) : (
           <>
             <article>
               <Head>
                 <title>
-                  {post.title} | {PROD_NAME} by {BIZ_NAME}
+                  {account.account_name} for {account.artist_name} | {PROD_NAME} by {BIZ_NAME}
                 </title>
                 {/* <meta property="og:image" content={post.ogImage.url} /> */}
               </Head>
-              <PostHeader
-                title={post.title}
-                coverImage={post.coverImage}
-                date={post.date}
-                author={post.author}
-              />
-              <PostBody content={post.content} />
+              <SectionSeparator />
+              <h1>{account.artist_name}</h1>
+              <p>{account.title}</p>
             </article>
           </>
-        )}
       </Container>
     </Layout>
   )
 }
 
 export async function getStaticProps({ params, preview = false }) {
-  const data = await getPostAndMorePosts(params.slug, preview)
-  const account = await getAccountName()
-  const artist = await getArtistPage()
+  const data = await getAccount(
+    params.account_name, params.artist_name, preview
+  )
+  console.log(data)
   return {
     props: {
       preview,
-      post: data.post || null,
-      morePosts: data.morePosts || null,
-      artist: artist.artist_name,
-      account: account.account_name
+      params,
+      data 
+  //    account: data|| null,
     },
   }
 }
@@ -65,15 +61,15 @@ export async function getStaticProps({ params, preview = false }) {
 export async function getStaticPaths() {
   const allPosts = await getArtistPage()
   const account = await getAccountName()
-  console.log(allPosts[0].artist_name)
-  console.log(account[0])
+  //console.log(allPosts[0])
+  //console.log(account[0])
   return {
     paths: [
       { params: {
-        account_name: 'test',//account[0].account_name
-        artist_name: 'remi-wolf'//allPosts[0].artist_name
+        artist_name: allPosts[0].artist_name || null,//allPosts[0].artist_name,
+        account_name: account[0].account_name || null //'test'//account[0].account_name
       }}, 
-    ],
-    fallback: true
+    ] || [],
+    fallback: false
   }
 }

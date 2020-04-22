@@ -12,7 +12,17 @@ const getUniquePosts = posts => {
     }
   })
 }
-
+const getUniqueAccounts = account => {
+  const account_name = new Set()
+  return account.filter(account => {
+    if (account_name.has(account.account_name)) {
+      return false
+    } else {
+      account_name.add(account.account_name)
+      return true
+    }
+  })
+}
 const postFields = `
   name,
   title,
@@ -22,7 +32,17 @@ const postFields = `
   'coverImage': coverImage.asset->url,
   'author': author->{name, 'picture': picture.asset->url},
 `
-
+const accountFields = `
+  name,
+  title,
+  date,
+  excerpt,
+  artist_name,
+  account_name,
+  'slug': slug.current,
+  'coverImage': coverImage.asset->url,
+  'author': author->{name, 'picture': picture.asset->url},
+`
 const getClient = preview => (preview ? previewClient : client)
 
 export const imageBuilder = sanityImage(client)
@@ -41,6 +61,16 @@ export async function getPreviewPostBySlug(slug) {
 export async function getAllPostsWithSlug() {
   const data = await client.fetch(`*[_type == "post"]{ 'slug': slug.current }`)
   return data
+}
+
+export async function getArtistPage() {
+  const data = await client.fetch(`*[_type == "account"]{ 'slug': slug}`)
+  return data[0].slug.current
+}
+
+export async function getAccountName() {
+  const data = await client.fetch(`*[_type == "account"]{ 'account_slug': account_slug }`)
+  return data[0].account_slug
 }
 
 export async function getAllPostsForHome(preview) {
@@ -72,4 +102,36 @@ export async function getPostAndMorePosts(slug, preview) {
     ),
   ])
   return { post, morePosts: getUniquePosts(morePosts) }
+}
+
+export async function getAccountAndMoreAccounts(account_name, preview) {
+  const curClient = getClient(preview)
+  const [account,] = await Promise.all([
+    curClient
+      .fetch(
+        `*[_type == "account" && account_name == $account_name] | order(_updatedAt desc) {
+        ${accountFields}
+        content,
+      }`,
+        { account_name }
+      )
+      .then(res => res?.[0])
+  ])
+  return { account }// moreAccounts: getUniqueAccounts(moreAccounts) }
+}
+
+export async function getAccount(account_slug, slug, preview) {
+  const curClient = getClient(preview)
+  const [account,] = await Promise.all([
+    curClient
+      .fetch(
+        `*[_type == "account" && account_slug == $account_slug && slug.current == $slug] | order(_updatedAt desc) {
+        ${accountFields}
+        content,
+      }`, 
+        { account_slug, slug}
+      )
+      .then(res => res?.[0])
+  ])
+  return { account } // moreAccounts: getUniqueAccounts(moreAccounts) }
 }

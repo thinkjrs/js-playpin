@@ -12,19 +12,21 @@ import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import { PROD_NAME, BIZ_NAME } from '../../lib/constants'
 
-export default function ArtistCampaign({ params, preview, data }) {
+export default function ArtistCampaign({ preview, data }) {
 
   const router = useRouter()
-  //console.log(params)
-  //if (!router.isFallback) {
-  //  return <ErrorPage statusCode={404} />
-  //}
+  if (!router.isFallback && !data?.account) {
+    return <ErrorPage statusCode={404} />
+  }
   const account = data?.account || {}
  
   return (
     <Layout preview={preview}>
       <Container>
         <Header />
+        {router.isFallback ? (
+          <PostTitle>Loading...</PostTitle>
+        ) : (
           <>
             <article>
               <Head>
@@ -43,6 +45,7 @@ export default function ArtistCampaign({ params, preview, data }) {
             </article>
             <SectionSeparator />
           </>
+        )}
       </Container>
     </Layout>
   )
@@ -55,15 +58,12 @@ export async function getStaticProps({ params, preview = false }) {
   return {
     props: {
       preview,
-      params,
       data 
     },
   }
 }
 
 export async function getStaticPaths() {
-  const slug = await getArtistPage()
-  const actslug = await getAccountName()
   const accounts = await getAllAccountsWithSlugs()
   return { 
     paths:
@@ -75,13 +75,4 @@ export async function getStaticPaths() {
       })) || [],
     fallback: true,
   }
-//  {
-//    paths: [
-//      { params: {
-//        slug: accounts.slug || null,
-//        account_slug: accounts.account_slug|| null 
-//      }}, 
-//    ] || [],
-//    fallback: false
-//  }
 }

@@ -7,7 +7,7 @@ import Header from '../../components/header'
 import PostHeader from '../../components/post-header'
 import SectionSeparator from '../../components/section-separator'
 import Layout from '../../components/layout'
-import { getArtistPage, getAccountName, getAccount } from '../../lib/api'
+import { getAllAccountsWithSlugs, getArtistPage, getAccountName, getAccount } from '../../lib/api'
 import PostTitle from '../../components/post-title'
 import Head from 'next/head'
 import { PROD_NAME, BIZ_NAME } from '../../lib/constants'
@@ -33,10 +33,15 @@ export default function ArtistCampaign({ params, preview, data }) {
                 </title>
                 {/* <meta property="og:image" content={post.ogImage.url} /> */}
               </Head>
-              <SectionSeparator />
-              <h1>{account.artist_name}</h1>
-              <p>{account.title}</p>
+              <PostHeader
+                title={account.title}
+                coverImage={account.coverImage}
+                date={account.date}
+                author={account.author}
+              />
+              <PostBody content={account.content} />
             </article>
+            <SectionSeparator />
           </>
       </Container>
     </Layout>
@@ -59,13 +64,24 @@ export async function getStaticProps({ params, preview = false }) {
 export async function getStaticPaths() {
   const slug = await getArtistPage()
   const actslug = await getAccountName()
-  return {
-    paths: [
-      { params: {
-        slug: slug || null,
-        account_slug: actslug || null 
-      }}, 
-    ] || [],
-    fallback: false
+  const accounts = await getAllAccountsWithSlugs()
+  return { 
+    paths:
+      accounts?.map(account => ({
+        params: {
+          slug: account.slug,
+          account_slug: account.account_slug
+        },
+      })) || [],
+    fallback: true,
   }
+//  {
+//    paths: [
+//      { params: {
+//        slug: accounts.slug || null,
+//        account_slug: accounts.account_slug|| null 
+//      }}, 
+//    ] || [],
+//    fallback: false
+//  }
 }

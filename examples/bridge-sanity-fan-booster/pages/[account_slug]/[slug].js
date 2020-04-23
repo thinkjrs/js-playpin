@@ -18,7 +18,7 @@ export default function ArtistCampaign({ preview, data }) {
   if (!router.isFallback && !data?.account) {
     return <ErrorPage statusCode={404} />
   }
-  const account = data.account
+  const account = data?.account || {}
  
   return (
     <Layout preview={preview}>
@@ -64,8 +64,6 @@ export async function getStaticProps({ params, preview = false }) {
 }
 
 export async function getStaticPaths() {
-  const slug = await getArtistPage()
-  const actslug = await getAccountName()
   const accounts = await getAllAccountsWithSlugs()
   return { 
     paths:

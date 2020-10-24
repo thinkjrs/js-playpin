@@ -23,15 +23,18 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <a href="https://nextjs.org/docs" className={styles.card}>
-            <h3>Sign Up&rarr;</h3>
-            <p>Sign Up for a Musicfox account. <strong>It's free!</strong></p>
-          </a>
-
-          <a href="https://nextjs.org/learn" className={styles.card}>
-            <h3>Login&rarr;</h3>
-            <p>Login to your Musicfox account. Access your b00st apps and projects.</p>
-          </a>
+          <Link href={"/signup/test-token"}>
+            <a className={styles.card}>
+              <h3>Sign Up&rarr;</h3>
+              <p>Sign Up for a Musicfox account. <strong>It's free!</strong></p>
+            </a>
+          </Link>
+          <Link href={"/" /* TODO point to auth api endpoint */} >
+            <a href="https://nextjs.org/learn" className={styles.card}>
+              <h3>Login&rarr;</h3>
+              <p>Login to your Musicfox account. Access your b00st apps and projects.</p>
+            </a>
+          </Link>
         </div>
       </main>
 

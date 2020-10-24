@@ -23,7 +23,7 @@ export default function Home() {
         </p>
 
         <div className={styles.grid}>
-          <Link href={"/signup/test-token"}>
+          <Link href={"/signup?token=test-token"}>
             <a className={styles.card}>
               <h3>Sign Up&rarr;</h3>
               <p>Sign Up for a Musicfox account. <strong>It's free!</strong></p>

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Head from 'next/head';
 import DefaultErrorPage from 'next/error';
 import { useState } from 'react';
+import { Formik, Field, Form } from 'formik';
 
 function validateStep(value: number, max: number = 4): number {
   if (value < max) {
@@ -40,38 +41,75 @@ function error404(): JSX.Element {
     <DefaultErrorPage statusCode={404} style={{maxHeight: '25%'}}/>
   </>
 };
+const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function FormOptions({checkboxContent}) {
+  return (
+    <>
+      <div id="checkbox-group" />
+      <div role="group" aria-labelledby="checkbox-group">
+        { checkboxContent.map((val, index) => (
+          <label>
+            <Field type="checkbox" name={`${checkboxContent[index]}`} value={checkboxContent[index]} />
+            {val}
+          </label>
+          )) 
+        }
+      </div>
+    </>
+  )
+};
+function Basic () {
+  const defaultFormRes = {
+    0: ['This', 'Is', 'A', 'Test'],
+    1: ['Another','Test', 'Here'],
+    2: ["Don't", 'Mind', 'Me'],
+    3: ['Unless', 'The', 'Test', 'Fails']
+  };
+  const [step, setStep] = useState(0);
+  const [formRes, setFormRes] = useState( defaultFormRes );
+  return (
+    <div>
+      <h1>Sign Up</h1>
+      <Formik
+        initialValues={{
+          checked: [], /* name of Field "chedked" */
+        }}
+        onSubmit={async (values) => {
+          await sleep(150);
+          alert(JSON.stringify(values, null, 2));
+        }}
+      >
+        {({ values }) => (
+          <Form>              
+            <FormOptions  checkboxContent={defaultFormRes[step]}/>
+            <div style={{display: "flex"}}>
+              <div className={styles.card} style={{backgroundColor: "#999193", color: '#fff'}} onClick={() => setStep(validateStep(step - 1))}>
+                Regress.
+              </div>
+              { step == 3 
+                ? <button className={styles.card} style={{backgroundColor: "#c60000", color: '#fff'}} type="submit">Submit</button> 
+                : <div className={styles.card} style={{backgroundColor: "#777", color: '#fff'}}  onClick={() => setStep(validateStep(step+1))}>
+                  Progress.
+                </div>
+              }
+            </div>
+            
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
 export default function Signup(): JSX.Element {
-
-
   const router = useRouter();
   const { token } = router.query
-  const [step, setStep] = useState(0);
 
   return (
     <div className={styles.container}>
       <div className={styles.description}>
-        <Label token={token} step={step? step: 0} />
-        <div className={styles.card} onClick={() => setStep(validateStep(step + 1))}>
-          { 
-            step === 0 
-            ? <div>Step {step + 1}: initial signup display.</div>
-            : step === 1
-            ? <div>Step {step + 1} intermediate signup display.</div>
-            : step === 2
-            ? <div>Step {step + 1} intermediate signup display.</div>
-            : step === 3
-            ? <div>Step {step + 1} last signup display!</div>
-            : <></>
-          }
-        </div>
-        <div style={{display: "flex"}}>
-          <div className={styles.card} style={{backgroundColor: "#999193", color: '#fff'}} onClick={() => setStep(validateStep(step - 1))}>
-            Regress.
-          </div>
-          <div className={styles.card} style={{backgroundColor: "#777", color: '#fff'}}  onClick={() => setStep(validateStep(step+1))}>
-            Progress.
-          </div>
-        </div>
+        <Basic/>
+
       </div>
     </div>
   )

@@ -94,7 +94,8 @@ export default function WizardSignup(): JSX.Element {
           email: '',
           firstName: '',
           lastName: '',
-          q1artists: []
+          q1artists: [],
+          q2artists: [],
         }}
         onSubmit={async values =>
           sleep(300).then(() => console.log('Wizard submit', values))
@@ -154,18 +155,39 @@ export default function WizardSignup(): JSX.Element {
           </div>
         </WizardStep>
         <WizardStep onSubmit={() => console.log('Step3 onSubmit')}>
-         { q1artists.map((val, index) => ( 
-           <>
-            <label htmlFor={val} key={index}>
-              <Field
-                type="checkbox"
-                name='q1artists'
-                value={val}
-              />
-              {val}
-            </label>
-            <ErrorMessage className="error" component="div" name={val}/>
-            </>
+          { q1artists.map((val, index) => ( 
+          <>
+            <div id={`checkbox-group-${val.replace(/[^a-zA-Z0-9-_]/g, '')}`} />
+            <div role="group" aria-labelledby="checkbox-group">
+              <label htmlFor={val} key={index}>
+                <Field
+                  type="checkbox"
+                  name='q1artists'
+                  value={val}
+                />
+                {val}
+              </label>
+              <ErrorMessage className="error" component="div" name={val}/>
+            </div>
+          </>
+         ))}
+        </WizardStep>
+        <WizardStep onSubmit={() => console.log('Step4 onSubmit')}>
+          { q1artists.map((val, index) => ( 
+          <>
+            <div id={`checkbox-group-${val.replace(/[^a-zA-Z0-9-_]/g, '')}`} />
+            <div role="group" aria-labelledby="checkbox-group">
+              <label htmlFor={val} key={index}>
+                <Field
+                  type="checkbox"
+                  name='q2artists'
+                  value={val}
+                />
+                {val}
+              </label>
+              <ErrorMessage className="error" component="div" name={val}/>
+            </div>
+          </>
          ))}
         </WizardStep>
       </Wizard>
